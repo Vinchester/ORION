@@ -15,7 +15,7 @@
             $name = "root";
             $db = "orionposts";
             $table = "posts";
-            $pdo = new PDO("mysql:host=sql8.freemysqlhosting.net:3306;dbname=sql8513259","sql8513259","kqAFkszDdc");
+            $pdo = new PDO("mysql:host=sql8.freemysqlhosting.net;dbname=sql8513259","sql8513259","kqAFkszDdc");
             $output = "Database connected";
             // $headline = htmlspecialchars($_POST["headline"]);
             // // $command = htmlspecialchars($_POST['command']);  
