@@ -15,7 +15,7 @@
             $name = "root";
             $db = "orionposts";
             $table = "posts";
-            $pdo = new PDO("mysql:host=localhost;dbname=orionposts","root");
+            $pdo = new PDO("mysql:host=sql8.freemysqlhosting.net;dbname=sql8513259","sql8513259","kqAFkszDdc");
             $output = "Database connected";
             $sql = "select * from `posts` where id = " . $_COOKIE['id'] . "";
             $result = $pdo->query($sql);
