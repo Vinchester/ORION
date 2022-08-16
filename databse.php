@@ -1,6 +1,6 @@
 <?php
     try{
-        $pdo = new PDO("mysql:host=localhost;dbname=orionposts","root");
+        $pdo = new PDO("mysql:host=sql8.freemysqlhosting.net;dbname=sql8513259","sql8513259","kqAFkszDdc");
         $output = "Database connected";
         $headline = htmlspecialchars($_POST['headlineEn']);
         $imgurl = htmlspecialchars($_POST['imgurl']);
