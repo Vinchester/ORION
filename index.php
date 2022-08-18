@@ -63,6 +63,9 @@
             </tr>
         </table>
     </div>
+    <div id="artforphone">
+        <div id="cardz"></div>
+    </div>
     <div id="articles">
         <div id="card001"></div>
         <div id="cards"></div>
@@ -75,37 +78,63 @@
         var author = <?php echo '["' . (implode('" , "', $authorarray)) . '"]'?>.reverse();
         var i = 0;
         var y = 0;
+        // document.body.onload = ; 
         while(i < idarray.length){
-            document.body.onload = addElement();
+            addElement();
             function addElement(){
-                if((idarray[i] % 2) !== 0 && y !== 2){
+                if (window.innerWidth < 600) {
+                    addElementOnPhone();
+                    i++;
+                }else{
+                    if((idarray[i] % 2) !== 0 && y !== 2){
                     makecard02();
                     i++;
                     // y++;
-                }else if((idarray[i] % 2) === 0 && y !== 2){
-                    makecard01();
-                    i++;
+                    }else if((idarray[i] % 2) === 0 && y !== 2){
+                        makecard01();
+                        i++;
+                    }
+                    // }else if(y === 2){
+                    //     makecard01();
+                    //     i++;
+                    //     y = 0;
+                    // }
                 }
-                // }else if(y === 2){
-                //     makecard01();
-                //     i++;
-                //     y = 0;
-                // }
             }
         }
+        function addElementOnPhone(){
+            let card = document.createElement("div");
+            card.classList.add("cardforphone");
+            card.setAttribute("id",idarray[i]);
+            card.setAttribute("onclick","getName(this.id)");
+            let card0textdiv = document.createElement("div");//text div creation
+            card0textdiv.classList.add("arttext");//text div class added
+            card0textdiv.innerHTML = '<p class="articlepretext">' + posttextEn[i] + '</p>';//Post text added
+            let headlinetext = document.createElement("p");//haedline created
+            headlinetext.classList.add("articlepretext");//headline class added
+            headlinetext.innerHTML = '<p class="articleheadline">' + headlineEn[i] + '<br><p class="author">'+ author[i] + '</p>' +'</p>';//
+            let cardselem = document.getElementById("cardz");
+            let imgurlarray = document.createElement("div");
+            imgurlarray.classList.add("img02");
+            imgurlarray.innerHTML = '<img loading="lazy" src="' + imgurl[i] + '">';
+            cardselem.insertBefore(card, cardselem.firstChild);
+            card.insertBefore(card0textdiv, card.firstChild);//headline inserting
+            card0textdiv.insertBefore(headlinetext, card0textdiv.firstChild);//Article text inserting
+            card.insertBefore(imgurlarray, card.firstChild);
+        }
         function makecard02(){
-            var card02 = document.createElement("div");
+            let card02 = document.createElement("div");
             card02.classList.add("card02");
             card02.setAttribute("id",idarray[i]);
             card02.setAttribute("onclick","getName(this.id)");
             var card02textdiv = document.createElement("div");//text div creation
             card02textdiv.classList.add("arttext");//text div class added
             card02textdiv.innerHTML = '<p class="articlepretext">' + posttextEn[i] + '</p>';//Post text added
-            var headlinetext = document.createElement("p");//haedline created
+            let headlinetext = document.createElement("p");//haedline created
             headlinetext.classList.add("articlepretext");//headline class added
             headlinetext.innerHTML = '<p class="articleheadline">' + headlineEn[i] + '<br><p class="author">'+ author[i] + '</p>' +'</p>';//
-            var cardselem = document.getElementById("cards");
-            var imgurlarray = document.createElement("div");
+            let cardselem = document.getElementById("cards");
+            let imgurlarray = document.createElement("div");
             imgurlarray.classList.add("img02");
             imgurlarray.innerHTML = '<img loading="lazy" src="' + imgurl[i] + '">';
             cardselem.insertBefore(card02, cardselem.firstChild);
@@ -114,18 +143,18 @@
             card02.insertBefore(imgurlarray, card02.firstChild);
         }
         function makecard01(){
-            var card01 = document.createElement("div");
+            let card01 = document.createElement("div");
             card01.classList.add("card01");
             card01.setAttribute("id",idarray[i]);
             card01.setAttribute("onclick","getName(this.id)");
-            var card01textdiv = document.createElement("div");//text div creation
+            let card01textdiv = document.createElement("div");//text div creation
             card01textdiv.classList.add("arttext");//text div class added
             card01textdiv.innerHTML = '<p class="articlepretext">' + posttextEn[i] + '</p>';//Post text added
-            var headlinetext = document.createElement("p");//haedline created
+            let headlinetext = document.createElement("p");//haedline created
             headlinetext.classList.add("articlepretext");//headline class added
             headlinetext.innerHTML = '<p class="articleheadline">' + headlineEn[i] + '<br><p class="author">'+ author[i] + '</p>' +'</p>';//
-            var articleselem = document.getElementById("card001");
-            var imgurlarray = document.createElement("div");
+            let articleselem = document.getElementById("card001");
+            let imgurlarray = document.createElement("div");
             imgurlarray.classList.add("img02");
             imgurlarray.innerHTML = '<img loading="lazy" src="' + imgurl[i] + '">';
             articleselem.insertBefore(card01, articleselem.firstChild);

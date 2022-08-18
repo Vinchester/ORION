@@ -1,6 +1,6 @@
 <?php
     try{
-        $pdo = new PDO("mysql:host=sql8.freemysqlhosting.net;dbname=sql8513259","sql8513259","kqAFkszDdc");
+        $pdo = new PDO("mysql:host=localhost;dbname=orionposts","root");
         $output = "Database connected";
         $headline = htmlspecialchars($_POST['headlineEn']);
         $imgurl = htmlspecialchars($_POST['imgurl']);
@@ -9,7 +9,7 @@
         // echo (($headline), ($posttext), ($author), ($imgurl));
         $sql = 'insert into `posts` set `headlineEn` = "' . $headline . '", `posttextEn`="' . $posttext . '", `img` = "' . $imgurl . '", `author` = "' . $author . '";';
         $rows = $pdo->exec($sql);
-        header('Location:testmakeposts.php');
+        header('Location:index.php');
         exit();
         // $sql = 'insert into `posts` ("headlineEn","posttextEn","img","author") values (:headlineEn,:posttextEn,:imgurl,:author);';
         // $rows = $pdo->prepare($sql);
