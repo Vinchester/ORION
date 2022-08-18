@@ -15,15 +15,15 @@
             $name = "root";
             $db = "orionposts";
             $table = "posts";
-            $pdo = new PDO("mysql:host=sql8.freemysqlhosting.net;dbname=sql8513259","sql8513259","kqAFkszDdc");
+            $pdo = new PDO("mysql:host=sql8.freemysqlhosting.net;dbname=sql8513259;charset=utf8;","sql8513259","kqAFkszDdc");
             $output = "Database connected";
             $sql = "select * from `posts` where id = " . $_COOKIE['id'] . "";
             $result = $pdo->query($sql);
             // console.log($result);
             while($row = $result->fetch()){
                 $idarray[] = $row['id'];
-                $headlineEnarray[] = $row['headlineEn'];
-                $posttextEn[] = $row['posttextEn'];
+                $headlineEnarray[] = $row['headline' . $_COOKIE['language'] . ''];
+                $posttextEn[] = $row['posttext' . $_COOKIE['language'] . ''];
                 $imgurlarray[] = $row['img'];
                 $authorarray[] = $row['author'];
             }

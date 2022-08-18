@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ua">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ORION — NEWS</title>
@@ -15,19 +15,20 @@
             $name = "root";
             $db = "orionposts";
             $table = "posts";
-            $pdo = new PDO("mysql:host=sql8.freemysqlhosting.net;dbname=sql8513259","sql8513259","kqAFkszDdc");
+            $pdo = new PDO("mysql:host=sql8.freemysqlhosting.net;dbname=sql8513259;charset=utf8;","sql8513259","kqAFkszDdc");
             $output = "Database connected";
             // $headline = htmlspecialchars($_POST["headline"]);
             // // $command = htmlspecialchars($_POST['command']);  
             // $posttext = htmlspecialchars($_POST['posttext']);
             // $imgurl = htmlspecialchars($_POST['imgurl']);
-            $sql = "select `id`,`headlineEn`,`posttextEn`,`img`,`author` from `posts` ORDER BY `id` DESC LIMIT 50;";
+            $lang = ($_COOKIE['language']);
+            $sql = "select `id`,`headline" . $lang . "`,`posttext" . $lang . "`,`img`,`author` from `posts` where `headline" . $lang . "` is not null ORDER BY `id` DESC LIMIT 50;";
             $result = $pdo->query($sql);
             // console.log($result);
             while($row = $result->fetch()){
                 $idarray[] = $row['id'];
-                $headlineEnarray[] = $row['headlineEn'];
-                $posttextEn[] = $row['posttextEn'];
+                $headlineEnarray[] = $row['headline' . $lang . ''];
+                $posttextEn[] = $row['posttext' . $lang . ''];
                 $imgurlarray[] = $row['img'];
                 $authorarray[] = $row['author'];
             }
@@ -41,13 +42,14 @@
     ?>
     <?php require("header.php")?>
     <div id="extrainfodiv">
-        <p onclick="hideinfo()">Hide bar</p>
+        <p onclick="hideinfo()" id="hidebar">Hide bar</p>
         <p>Change language</p>
-        <select>
+        <select id="languages">
             <option value="En">English</option>
             <option value="Ua">Ukrainian</option>
             <option value="Ru">Russian</option>
         </select>
+        <button id="changelang">Change language</button>
         <table class="tableextra">
             <tr>
                 <th>Contacts</th>
@@ -78,7 +80,6 @@
         var author = <?php echo '["' . (implode('" , "', $authorarray)) . '"]'?>.reverse();
         var i = 0;
         var y = 0;
-        // document.body.onload = ; 
         while(i < idarray.length){
             addElement();
             function addElement(){
@@ -167,6 +168,15 @@
             window.location.href = "fullpost.php";
             console.log(document.cookie);
         }
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("changelang").onclick = function(){
+                let language = document.getElementById("languages").value;
+                document.cookie = "language=" + language + "";
+                location.reload();
+            }
+        });
+        console.log(document.cookie);
+
     </script>
     <script src="header.js"></script>
 </body>

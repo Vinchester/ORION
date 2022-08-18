@@ -191,11 +191,16 @@ form textarea{
     margin: 0 auto;
     margin-top: 50px;
     padding-top: 10px;
+    font-size: 20px;
+    font-weight: 900;
 }
 #extrainfodiv select{
     border-radius: 5px;
     margin-bottom: 10px;
     background-color: #aad2d2;
+}
+#hidebar:hover{
+    cursor: pointer;
 }
 #cardz{
     margin: 0;
@@ -215,6 +220,9 @@ form textarea{
 .cardforphone:hover{
     transition: 0.3s background-color;
     background-color: rgb(65, 151, 232);
+}
+.fullhead{
+    cursor: pointer;
 }
 @media only screen and (max-width:600px){
     .fullhead{
